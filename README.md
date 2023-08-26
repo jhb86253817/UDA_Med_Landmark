@@ -12,10 +12,48 @@ git clone https://github.com/jhb86253817/UDA_Med_Landmark.git
 ```Shell
 pip install -r requirements.txt
 ```
-## Datasets
-* Head: Source domain of cephalometric landmark detection ([Download Link](https://figshare.com/s/37ec464af8e81ae6ebbf?file=5466590)). Put the downloaded `RawImage` and `AnnotationsByMD` under `data/Head`.
-* HeadNew: Target domain of cephalometric landmark detection ([Download Link](http://vision.seecs.edu.pk/CEPHA29/)). Put the downloaded `Cephalograms` and `Cephalometric_Landmarks` under `data/HeadNew`.
-* JSRT: Source domain of lung landmark detection ([Download Link](http://db.jsrt.or.jp/eng.php)). 
-* MSP: Target domain of lung landmark detection, which consists of three datasets: Montgomery ([Download Link](https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataSets.html)), Shenzhen ([Download Link](https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataSets.html)), and PadChest ([Download Link](https://bimcv.cipf.es/bimcv-projects/padchest/)).
+## Datasets Preparation
+* Head: Source domain of cephalometric landmark detection ([Download Link](https://figshare.com/s/37ec464af8e81ae6ebbf?file=5466590)). Put the downloaded `RawImage` and `AnnotationsByMD` under `data/Head/`.
+* HeadNew: Target domain of cephalometric landmark detection ([Download Link](http://vision.seecs.edu.pk/CEPHA29/)). Put the downloaded `Cephalograms` and `Cephalometric_Landmarks` under `data/HeadNew/`. Download the processed image size ([img2size.json](https://drive.google.com/file/d/1riR66xCaelJf71jx90DESAFT98UoCYBg/view?usp=drive_link)) and pixel size ([img2dist.json](https://drive.google.com/file/d/1BggVZxigSr4SEQvRR-lnn9L4GOjKdymL/view?usp=drive_link)) information, then put them under the same folder.
+* JSRT: Source domain of lung landmark detection ([Download Link](http://db.jsrt.or.jp/eng.php)). Put the downloaded `All247images` under `data/JSRT/`. Run the `preprocess.py` under `data/JSRT` to generate `Images`. Collect the landmark annotations from [HybridGNet](https://github.com/ngaggion/HybridGNet/tree/main) and put them under `data/JSRT/annos/`.
+* MSP: Target domain of lung landmark detection, which consists of three datasets: Montgomery ([Download Link](https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataSets.html)), Shenzhen ([Download Link](https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataSets.html)), and Padchest ([Download Link](https://bimcv.cipf.es/bimcv-projects/padchest/)). 1) For Montgomery, put the downloaded `CXR_png` under `data/Montgomery/`. Run the `preprocess.py` under `data/Montgomery` to generate `Images`. Collect the landmark annotations from [HybridGNet](https://github.com/ngaggion/HybridGNet/tree/main) and put them under `data/Montgomery/annos_RL/` and `data/Montgomery/annos_LL/`; 2) For Shenzhen, put the downloaded `CXR_png` under `data/Shenzhen/`. Run the `preprocess.py` under `data/Shenzhen` to generate `Images`. Collect the landmark annotations from [HybridGNet](https://github.com/ngaggion/HybridGNet/tree/main) and put them under `data/Shenzhen/annos_RL/` and `data/Shenzhen/annos_LL/`; For Padchest, download the landmark annotations from [here](https://drive.google.com/file/d/15qdzekQfj4zgkVgfi_x1WlKAq2wITl8i/view?usp=drive_link), unzip it and put it under `data/Padchest/annos`. Then select those images with landmark annotations and put them under `data/Padchest/Images/`.
+You will have the following structure:
+````
+UDA_Med_Landmark
+-- data
+   |-- Head
+       |-- RawImage
+       |-- AnnotationsByMD
+   |-- HeadNew
+       |-- Cephalograms
+       |-- Cephalometric_Landmarks
+       |-- img2size.json
+       |-- img2dist.json
+   |-- JSRT
+       |-- All247images
+       |-- preprocess.py
+       |-- Images
+       |-- annos
+   |-- Montgomery
+       |-- CXR_png
+       |-- preprocess.py
+       |-- Images
+       |-- annos_RL
+       |-- annos_LL
+   |-- Shenzhen
+       |-- CXR_png
+       |-- preprocess.py
+       |-- Images
+       |-- annos_RL
+       |-- annos_LL
+   |-- Padchest
+       |-- Images
+       |-- annos
+````
 
 ## Training
+Take cephalometric landmark detection as example.
+1. Go to folder `lib`, run `preprocess.py Head` and `preporcess.py HeadNew` to preprocess the two datasets.
+2. Back to folder `UDA_Med_Landmark`, run `bash run_train.sh` to start training.
+
+## Testing
