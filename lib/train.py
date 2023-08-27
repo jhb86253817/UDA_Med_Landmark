@@ -164,7 +164,6 @@ loader_val = torch.utils.data.DataLoader(data_val, batch_size=cfg.batch_size, sh
 
 pseudo_labels = []
 for ti in range(cfg.semi_iter):
-    print('###################################################')
     print('Starting iter {}'.format(ti))
     logging.info('Starting iter {}'.format(ti))
 
