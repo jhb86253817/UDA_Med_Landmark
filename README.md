@@ -3,10 +3,14 @@
 Code of MICCAI 2023 paper: "Unsupervised Domain Adaptation for Anatomical Landmark Detection".
 
 ## Installation
-1. Install Python3 and PyTorch >= v1.3
-2. Clone this repository.
+1. Clone this repository.
 ```Shell
 git clone https://github.com/jhb86253817/UDA_Med_Landmark.git
+```
+2. Create a new conda environment.
+```Shell
+conda create -n uda_med_landmark python=3.9
+conda activate uda_med_landmark
 ```
 3. Install the dependencies in requirements.txt.
 ```Shell
@@ -63,12 +67,12 @@ UDA_Med_Landmark
 ## Training
 Take cephalometric landmark detection as example.
 1. Go to folder `lib`, run `preprocess.py Head` and `preporcess.py HeadNew` to preprocess the two datasets, respectively.
-2. Back to folder `UDA_Med_Landmark`, run `bash run_train.sh` to start training.
+2. Back to folder `UDA_Med_Landmark`, configure the command in `run_train.sh` as needed, then run `bash run_train.sh` to start training.
 
 ## Testing
 Take cephalometric landmark detection as example.
 1. Preprocess `Head` and `HeadNew` the same way as in training.
-2. Back to folder `UDA_Med_Landmark`, run `bash run_test.sh` to start testing.
+2. Back to folder `UDA_Med_Landmark`, configure the command in `run_test.sh` as needed, then run `bash run_test.sh` to start testing.
 
 **Trained model weights**:
 * [cephalometric landmark detection model](https://drive.google.com/file/d/1wGgQgdpdvyINNN7hvT49TLFjuxruRdRR/view?usp=drive_link)
