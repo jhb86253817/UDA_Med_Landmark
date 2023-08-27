@@ -3,7 +3,6 @@
 import os, cv2 
 import pathlib
 import re
-import matplotlib.pyplot as plt
 import numpy as np
 
 def natural_key(string_):
