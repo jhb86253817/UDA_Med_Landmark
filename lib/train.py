@@ -36,7 +36,7 @@ experiment_name = sys.argv[1].split('/')[-1][:-3]
 data_name = sys.argv[1].split('/')[-2]
 config_path = '.experiments.{}.{}'.format(data_name, experiment_name)
 
-my_config = importlib.import_module(config_path, package='release_v2')
+my_config = importlib.import_module(config_path, package='UDA_Med_Landmark')
 Config = getattr(my_config, 'Config')
 cfg = Config()
 cfg.experiment_name = experiment_name
